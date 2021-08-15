@@ -18,5 +18,5 @@ app.use(morgan('dev'))
 
 // Starting server
 app.listen(app.get('port'), () => {
-  console.log('Mangar-Sword | [+] listen on port:', app.get('port'))
+  console.log('SwordProject | [+] listen on port:', app.get('port'))
 })
