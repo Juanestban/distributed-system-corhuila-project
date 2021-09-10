@@ -107,4 +107,4 @@ Jhonnatan Moreno trujillo:
 
 🎉
 
-![Coffin dance](https://c.tenor.com/4-odaCiEXeUAAAAd/dancing-coffin-coffin-dance.gif)
+![Coffin dance](coffin.gif)
