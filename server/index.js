@@ -10,7 +10,7 @@ const app = express()
 
 // Settings
 dotenv.config()
-app.set('port', process.env.PORT || 3200)
+app.set('port', process.env.PORT || 3100)
 
 // database-connection
 require('./mongoose')
