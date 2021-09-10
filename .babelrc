@@ -4,7 +4,8 @@
       "@babel/preset-env",
       {
         "corejs": 3.8,
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "modules": false
       }
     ],
     "@babel/preset-react"
@@ -15,6 +16,25 @@
       {
         "regenerator": true
       }
-    ]
-  ]
+    ],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "env": {
+    "production": {
+      "only": [
+        "src"
+      ],
+      "plugins": [
+        [
+          "transform-react-remove-prop-types",
+          {
+            "removeImport": true
+          }
+        ],
+        "@babel/plugin-transform-react-inline-elements",
+        "@babel/plugin-transform-react-constant-elements"
+      ]
+    }
+  }
 }

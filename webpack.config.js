@@ -11,12 +11,35 @@ module.exports = {
     sourceMapFilename: '[name].js.map',
   },
   devtool: 'inline-source-map',
-  mode: 'production',
   devServer: {
+    disableHostCheck: true,
+    compress: true,
+    historyApiFallback: true,
     hot: true,
     host: 'localhost',
-    disableHostCheck: true,
+    overlay: true,
+    stats: {
+      // normal: false,
+      cacheModules: false,
+      runtimeModules: false,
+      dependentModules: false,
+      groupAssetsByChunk: false,
+      groupAssetsByEmitStatus: false,
+      groupAssetsByInfo: false,
+      groupModulesByAttributes: false,
+      hash: false,
+      version: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      // source: false,
+      publicPath: false,
+    },
+    /* open: true // can open new browser with the localhost project */
   },
+  stats: 'minimal',
   module: {
     rules: [
       {
@@ -25,6 +48,8 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
+            cacheDirectory: true,
+            cacheCompression: false,
           },
         },
         exclude: /node_modules/,
@@ -48,11 +73,24 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(eot|otf|ttf|woff|woff2)$/,
+        loader: require.resolve('file-loader'),
+        options: {
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
+      },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    // new webpack.ProgressPlugin({
+    //   activeModules: true,
+    //   handler: function () {
+    //     console.log('executed')
+    //   }
+    // }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       favicon: path.resolve(__dirname, 'public/favicon.ico'),
