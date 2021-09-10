@@ -11,7 +11,8 @@ class ShortenUrlController extends PrimaryController {
   }
 
   create = async (req, res, next) => {
-    const { body, headers, decodedToken } = req
+    // headers, decodedToken
+    const { body } = req
     const { longUrl } = body
 
     if (!validUrl.isUri(longUrl))
@@ -35,12 +36,12 @@ class ShortenUrlController extends PrimaryController {
           .end()
 
       const shortUrl = `${baseUrl}/short/${urlCode}`
-      const { id: userId } = decodedToken
+      // const { id: userId } = decodedToken
       const shortenUrl = new ShortenUrl({
         longUrl,
         shortUrl,
         urlCode,
-        userId,
+        // userId,
         date: new Date(),
       })
       const savedShortenUrl = await shortenUrl.save()
