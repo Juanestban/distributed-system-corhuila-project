@@ -34,3 +34,6 @@ package-lock.json
 
 ### prettiercache ###
 .prettiercache
+
+### Environment ###
+.env
