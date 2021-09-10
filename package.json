@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:server": "NODE_ENV=development nodemon ./server/index.js",
-    "dev:react": "webpack-dev-server --mode development --port 3000 --watch --progress",
+    "dev:react": "NODE_ENV=development webpack-dev-server --mode development --port 3000 --watch --progress",
     "start": "npm run build && run-p start:*",
     "start:server": "NODE_ENV=production node ./server/index.js",
-    "start:react": "serve -s ./dist -l 4000",
+    "start:react": "NODE_ENV=production serve -s ./dist -l 4000",
     "build": "webpack",
     "lint-check": "eslint . --check",
     "lint-fix": "eslint . --fix",
