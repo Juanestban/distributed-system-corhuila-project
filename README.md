@@ -12,7 +12,22 @@ Instalando paquetes necesarios para la ejecucion del proyecto
 npm install
 ```
 
-existen 2 modos de ejecucion para el proyecto
+Agregar archivo para las variables de entorno:
+
+```env
+# ## MONGO_CREDENTIALS ## #
+USER_MONGO
+PASS_MONGO
+
+# ## BASE_URL ## #
+BASE_URL_PRODUCTION
+BASE_URL_DEVELOPMENT
+
+# ## JWT_PASSWORD ## #
+JWT_PASSWORD
+```
+
+Existen 2 modos de ejecucion para el proyecto
 
 - modo desarrollo
 
@@ -20,7 +35,7 @@ existen 2 modos de ejecucion para el proyecto
 
 #### modo desarrollo
 
-ejecutara el proyecto de backend y frontend en conjuntos ambos por el modo desarrollo
+Ejecutara el proyecto de backend y frontend en conjuntos ambos por el modo desarrollo
 
 ```bash
 npm run dev
@@ -28,7 +43,7 @@ npm run dev
 
 #### modo producción
 
-ejecutara el proyecto de backend y frontend en conjuntos ambos por el modo producción
+Ejecutara el proyecto de backend y frontend en conjuntos ambos por el modo producción
 
 ```bash
 npm start
@@ -94,12 +109,12 @@ npm start
 
 ### Integrantes
 
-Juan Esteban Echeverry Perdomo:
+**Juan Esteban Echeverry Perdomo:**
 
 - [Github](https://github.com/Juanestban/)
 - [LinkedIn](https://www.linkedin.com/in/juan-esteban-echeverry-perdomo-developer-frontend/)
 
-Jhonnatan Moreno trujillo:
+**Jhonnatan Moreno trujillo:**
 
 - [Github](https://github.com/JhonnatanMorenoT)
 
