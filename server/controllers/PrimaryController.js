@@ -1,3 +1,5 @@
+const { User } = require('../models/User')
+
 class PrimaryController {
   constructor(SchemeMongo) {
     this.SchemeMongo = SchemeMongo
@@ -5,18 +7,26 @@ class PrimaryController {
 
   findAll = async (req, res, next) => {
     try {
-      // const { decodedToken, path } = req
-      // const { id } = decodedToken
-      // const pathname = path.substring(1)
-      // let arraysObjects
+      const { decodedToken, pathname } = req
+      const { id } = decodedToken
+      let arraysObjects
 
-      // if (pathname === 'shortenUrls') {
-      //   arraysObjects = await this.SchemeMongo.findOne({ userId: id })
-      //   if (!arraysObjects) return res.status(200).json([]).end()
-      //   return res.status(200).json(arraysObjects).end()
-      // }
+      if (pathname === 'shortenUrls') {
+        arraysObjects = await this.SchemeMongo.find({ userId: id })
 
-      const arraysObjects = await this.SchemeMongo.find()
+        if (!arraysObjects) return res.status(200).json([]).end()
+
+        return res.status(200).json(arraysObjects).end()
+      }
+
+      const userIsAdmin = await User.findById(id)
+
+      if (userIsAdmin.rol === 'ADMIN') {
+        arraysObjects = await this.SchemeMongo.find()
+        return res.status(200).json(arraysObjects).end()
+      }
+
+      arraysObjects = await this.SchemeMongo.findOne({ _id: id })
 
       return res.status(200).json(arraysObjects).end()
     } catch (e) {

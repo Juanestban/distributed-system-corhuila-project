@@ -29,6 +29,8 @@ JWT_PASSWORD
 
 Existen 2 modos de ejecucion para el proyecto
 
+> ⚠️ Antes de comenzar te recomendamos que ejecutes todo en modo desarrollo (dev) para que todo funcione correctamente, el modo produccion funcionara si el proyecto se encuentra desplegado por el uso de environments del front y back orientadas al development y production
+
 - modo desarrollo
 
 - modo producción
