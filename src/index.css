@@ -56,13 +56,13 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--white);
-  color: var(--dark-black);
-  font-family: var(--main-font);
+  /* background-color: var(--white); */
+  /* color: var(--dark-black); */
+  /* font-family: var(--main-font); */
   font-size: 17px;
-  line-height: var(--line-height);
+  /* line-height: var(--line-height); */
 }
 
-.app {
+.color-primary {
   color: #09f;
 }

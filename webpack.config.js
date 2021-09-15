@@ -85,6 +85,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.EnvironmentPlugin({
+      BASE_URL_PRODUCTION: 'https://shorten-url-sword.herokuapp.com/api',
+      BASE_URL_DEVELOPMENT: 'http://localhost:3100/api',
+    }),
     // new webpack.ProgressPlugin({
     //   activeModules: true,
     //   handler: function () {

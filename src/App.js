@@ -1,16 +1,30 @@
 import React from 'react'
-import favicon from './favicon.ico'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
+import { useToken } from './hooks'
+import { HomePage, LoginPage } from './pages'
+import { Navbar } from './components/Molecules'
 
-const App = () => {
-  console.log('hello, anothers')
+export default function App() {
+  const { token } = useToken()
 
   return (
-    <div className="header-app">
-      <h1 className="app">welcome to React-App with Webpack</h1>
-      <img src={favicon} width={200} height={200} alt="" />
-      <h2 className="app">otro cambio Rapidoooo</h2>
+    <div className="container-app">
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Redirect to={token ? '/home' : '/login'} />
+          </Route>
+          <Route exact path="/home" component={HomePage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route path="*" component={() => <h1>Not Found</h1>} />
+        </Switch>
+      </Router>
     </div>
   )
 }
-
-export default App
