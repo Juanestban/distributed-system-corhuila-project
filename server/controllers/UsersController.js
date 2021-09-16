@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const PrimaryController = require('./PrimaryController')
 const { User } = require('../models/User')
@@ -11,6 +12,7 @@ class UsersController extends PrimaryController {
     try {
       const { body } = req
       const { username, password, rol } = body
+      const { JWT_PASSWORD } = process.env
       const userValidateUsername = await User.findOne({ username })
       const message = `this username already exist`
 
@@ -26,7 +28,15 @@ class UsersController extends PrimaryController {
       })
 
       const savedUser = await user.save()
-      return res.status(201).json(savedUser).end()
+      const userForToken = {
+        id: savedUser._id,
+        username: savedUser.username,
+      }
+      const token = jwt.sign(userForToken, JWT_PASSWORD)
+      return res
+        .status(201)
+        .json({ ...userForToken, token })
+        .end()
     } catch (e) {
       next(e)
     }

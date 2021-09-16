@@ -19,11 +19,7 @@ export const useQuerySession = (url = '', isLogin = true) => {
     try {
       setLoading(true)
       setError(false)
-      const { data } = await axios.post(
-        `${baseUrl}/${url}`,
-        dataToSend,
-        configAxiosToken(token)
-      )
+      const { data } = await axios.post(`${baseUrl}/${url}`, dataToSend)
       setLoading(false)
       toast({
         ...toastProps,

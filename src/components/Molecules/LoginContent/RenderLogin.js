@@ -17,13 +17,15 @@ export const RenderLogin = ({
   value: { username, password },
   loading = false,
   error = false,
+  isRegister = false,
+  handleIsRegister = mockFun,
   handleSubmit = mockFun,
   handleSession = mockFun,
   hiddePasword = true,
   handleHidde = mockFun,
 }) => (
   <>
-    <Heading>Login</Heading>
+    <Heading>{isRegister ? 'Register' : 'Login'}</Heading>
     <form onSubmit={handleSubmit}>
       <FormControl isInvalid={error}>
         <FormLabel>Username</FormLabel>
@@ -62,7 +64,18 @@ export const RenderLogin = ({
           colorScheme="messenger"
           isLoading={loading}
         >
-          Log
+          {isRegister ? 'sign Up' : 'Log In'}
+        </Button>
+      </FormControl>
+      <FormControl>
+        <Button
+          w="100%"
+          type="button"
+          variant="outline"
+          colorScheme="blue"
+          onClick={handleIsRegister}
+        >
+          {isRegister ? 'go back' : 'Register'}
         </Button>
       </FormControl>
     </form>

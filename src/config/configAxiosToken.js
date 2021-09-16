@@ -1,5 +1,5 @@
 export const configAxiosToken = (token) => ({
   headers: {
-    Authorization: token,
+    Authorization: `Bearer ${token}`,
   },
 })

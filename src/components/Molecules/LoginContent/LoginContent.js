@@ -5,11 +5,17 @@ import { RenderLogin } from './RenderLogin'
 
 const initialVal = { username: '', password: '' }
 
-export const LoginContent = () => {
+export const LoginContent = ({ isRegister = false }) => {
   const [session, setSession] = useState(initialVal)
   const [hiddePasword, setHiddePassword] = useState(true)
+  const [isReg, setIsReg] = useState(isRegister)
   const navigation = useHistory()
   const { loading, error, handleAxiosPost } = useQuerySession('login')
+  const {
+    loading: loadReg,
+    error: errReg,
+    handleAxiosPost: handAxPostReg,
+  } = useQuerySession('users', false)
   const { login } = useAuth()
 
   const handleSession = ({ target: { name, value } }) =>
@@ -17,9 +23,13 @@ export const LoginContent = () => {
 
   const handleHidde = () => setHiddePassword(!hiddePasword)
 
+  const handleIsRegister = () =>
+    navigation.push(isRegister ? '/login' : '/register')
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const { data } = await handleAxiosPost(session)
+    const condHandlePost = isRegister ? handAxPostReg : handleAxiosPost
+    const { data } = await condHandlePost(session)
 
     if (data) {
       login(data.token)
@@ -30,8 +40,10 @@ export const LoginContent = () => {
   return (
     <RenderLogin
       value={session}
-      loading={loading}
-      error={error}
+      loading={isRegister ? loadReg : loading}
+      error={isRegister ? errReg : error}
+      isRegister={isReg}
+      handleIsRegister={handleIsRegister}
       handleSession={handleSession}
       handleSubmit={handleSubmit}
       hiddePasword={hiddePasword}
