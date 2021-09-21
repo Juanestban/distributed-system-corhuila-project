@@ -47,7 +47,15 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: [
+              '@babel/preset-env',
+              [
+                '@babel/preset-react',
+                {
+                  runtime: 'automatic', // we don't need the import React from 'react' for use the runtime jsx
+                },
+              ],
+            ],
             cacheDirectory: true,
             cacheCompression: false,
           },

@@ -31,5 +31,6 @@ module.exports = {
     'space-before-function-paren': types.OFF,
     'import/first': types.OFF,
     'comma-dangle': types.OFF,
+    'react/react-in-jsx-scope': types.OFF,
   },
 }
