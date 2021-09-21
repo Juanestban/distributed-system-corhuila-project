@@ -1,5 +1,4 @@
-import React from 'react'
-import { Tr, Td } from '@chakra-ui/react'
+import { Tr, Td, Link } from '@chakra-ui/react'
 
 export const ShortenUrl = ({ longUrl, date = '', shortUrl }) => {
   const newDate = new Date(date)
@@ -10,7 +9,11 @@ export const ShortenUrl = ({ longUrl, date = '', shortUrl }) => {
   return (
     <Tr>
       <Td>{longUrl}</Td>
-      <Td>{shortUrl}</Td>
+      <Td>
+        <Link target="_blank" href={shortUrl}>
+          {shortUrl}
+        </Link>
+      </Td>
       <Td>{prettyDate}</Td>
     </Tr>
   )

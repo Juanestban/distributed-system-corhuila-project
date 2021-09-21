@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth, useQuerySession } from '../../../hooks'
 import { RenderLogin } from './RenderLogin'

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo } from 'react'
+import { createContext, useEffect, useMemo } from 'react'
 import { mockFun } from '../../config/mockFun'
 import { useStorage } from '../../hooks'
 import { keyStorage } from '../../config/keyStorage'

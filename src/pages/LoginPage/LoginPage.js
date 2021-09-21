@@ -1,4 +1,3 @@
-import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Container, Box } from '@chakra-ui/react'
 import { LoginContent } from '../../components/Molecules'
