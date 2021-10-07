@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import {
   Box,
   Button,
@@ -10,37 +9,17 @@ import {
   Tbody,
   Spinner,
 } from '@chakra-ui/react'
-import axios from 'axios'
 import { ShortenUrl } from '..'
-import { baseUrl } from '../../../config/urlApi'
-import { useToken } from '../../../hooks'
-import { configAxiosToken } from '../../../config/configAxiosToken'
+import { useShortUrlContext } from '../../../hooks'
 
 export const ShortenUrlList = () => {
-  const [urls, setUrls] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const { token } = useToken()
-
-  const getAllUrls = async () => {
-    try {
-      setError(false)
-      setLoading(true)
-      const { data } = await axios.get(
-        `${baseUrl}/shortenUrls`,
-        configAxiosToken(token)
-      )
-      setLoading(false)
-      setUrls(data)
-    } catch {
-      setLoading(false)
-      setError(true)
-    }
-  }
-
-  useEffect(() => {
-    getAllUrls()
-  }, [])
+  const {
+    urls,
+    loading,
+    error,
+    getAllUrls,
+    handleDelete,
+  } = useShortUrlContext()
 
   return (
     <Box p="4">
@@ -59,13 +38,16 @@ export const ShortenUrlList = () => {
           <Tr>
             <Th>Url before</Th>
             <Th>Url shorted</Th>
-            <Th>created</Th>
+            <Th>Created</Th>
+            <Th style={{ textAlign: 'center' }}>Events</Th>
           </Tr>
         </Thead>
         <Tbody>
           {urls.length > 0 &&
             !error &&
-            urls.map((url) => <ShortenUrl key={url.id} {...url} />)}
+            urls.map((url) => (
+              <ShortenUrl key={url.id} {...url} onDelete={handleDelete} />
+            ))}
         </Tbody>
       </Table>
       <Box pt="4" display="flex" justifyContent="center">

@@ -14,6 +14,7 @@ import axios from 'axios'
 import { baseUrl } from '../../config/urlApi'
 import { configAxiosToken } from '../../config/configAxiosToken'
 import { useToken } from '../../hooks'
+import ShortenUrlProvider from '../../contexts/ShortenUrlContext'
 
 export default function HomePage() {
   const [url, setUrl] = useState('')
@@ -75,7 +76,9 @@ export default function HomePage() {
         </FormControl>
       </form>
 
-      <ShortenUrlList />
+      <ShortenUrlProvider>
+        <ShortenUrlList />
+      </ShortenUrlProvider>
     </>
   )
 }
