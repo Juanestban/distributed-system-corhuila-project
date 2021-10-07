@@ -8,6 +8,7 @@ import {
 import { useToken } from './hooks'
 import { HomePage, LoginPage, RegisterPage } from './pages'
 import { Navbar } from './components/Molecules'
+import { ShortenUrlProvider } from './contexts'
 
 export default function App() {
   const { token } = useToken()
@@ -24,7 +25,11 @@ export default function App() {
               </Route>
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/register" component={RegisterPage} />
-              <Route exact path="/home" component={HomePage} />
+              <Route exact path="/home">
+                <ShortenUrlProvider>
+                  <HomePage />
+                </ShortenUrlProvider>
+              </Route>
               <Route path="*" component={() => <h1>Not Found</h1>} />
             </Switch>
           </div>

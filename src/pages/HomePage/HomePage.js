@@ -13,14 +13,14 @@ import { ShortenUrlList } from '../../components/Organims'
 import axios from 'axios'
 import { baseUrl } from '../../config/urlApi'
 import { configAxiosToken } from '../../config/configAxiosToken'
-import { useToken } from '../../hooks'
-import ShortenUrlProvider from '../../contexts/ShortenUrlContext'
+import { useToken, useShortUrlContext } from '../../hooks'
 
 export default function HomePage() {
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(false)
   const { token } = useToken()
   const toast = useToast()
+  const { getAllUrls } = useShortUrlContext()
 
   const handleUrl = ({ target: { value } }) => setUrl(value)
 
@@ -35,6 +35,7 @@ export default function HomePage() {
       )
       setLoading(false)
       setUrl('')
+      getAllUrls()
     } catch {
       setLoading(false)
       toast({
@@ -75,10 +76,7 @@ export default function HomePage() {
           </InputGroup>
         </FormControl>
       </form>
-
-      <ShortenUrlProvider>
-        <ShortenUrlList />
-      </ShortenUrlProvider>
+      <ShortenUrlList />
     </>
   )
 }

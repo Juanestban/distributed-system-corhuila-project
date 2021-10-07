@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Text,
   Table,
   Thead,
@@ -13,26 +12,10 @@ import { ShortenUrl } from '..'
 import { useShortUrlContext } from '../../../hooks'
 
 export const ShortenUrlList = () => {
-  const {
-    urls,
-    loading,
-    error,
-    getAllUrls,
-    handleDelete,
-  } = useShortUrlContext()
+  const { urls, loading, error, handleDelete } = useShortUrlContext()
 
   return (
     <Box p="4">
-      <Box
-        display="flex"
-        alignItems="end"
-        flexDir="column"
-        justifyContent="center"
-      >
-        <Button colorScheme="cyan" onClick={getAllUrls}>
-          Reload
-        </Button>
-      </Box>
       <Table variant="striped">
         <Thead>
           <Tr>

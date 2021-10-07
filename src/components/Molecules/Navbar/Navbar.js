@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Heading, Button } from '@chakra-ui/react'
+import { Heading, Button, useDisclosure } from '@chakra-ui/react'
 import { Header, ContentTitle } from './styles'
 import { useAuth } from '../../../hooks'
+import { ModalProfile } from '../ModalProfile/ModalProfile'
 
 export const Navbar = () => {
   const navigation = useHistory()
   const { logout } = useAuth()
   const [pathname, setPathname] = useState(navigation.location.pathname)
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const styleButton = { variant: 'ghost' }
 
   const handleNavigation = () => navigation.push('/home')
 
-  // const handleProfile = () => {}
+  const handleProfile = () => onOpen()
 
   const handleLogout = () => {
     logout()
@@ -43,11 +45,11 @@ export const Navbar = () => {
                   Home
                 </Button>
               </li>
-              {/* <li>
+              <li>
                 <Button {...styleButton} onClick={handleProfile}>
                   Profile
                 </Button>
-              </li> */}
+              </li>
               <li>
                 <Button {...styleButton} onClick={handleLogout}>
                   Logout
@@ -57,6 +59,7 @@ export const Navbar = () => {
           </nav>
         )}
       </div>
+      <ModalProfile isOpen={isOpen} onClose={onClose} />
     </Header>
   )
 }

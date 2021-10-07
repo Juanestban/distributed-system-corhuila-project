@@ -3,6 +3,20 @@ const { userController } = require('../controllers/UsersController')
 
 const router = Router()
 
+// get profile
+router.get('/profile', (_, res) => {
+  res
+    .status(200)
+    .json({
+      status: 200,
+      message: 'finished',
+      username: 'juanestban',
+      password: 'asdafgoh',
+      rol: 'USER',
+    })
+    .end()
+})
+
 // get alls users
 router.get('/', userController.findAll)
 
