@@ -1,21 +1,8 @@
 const { Router } = require('express')
 const { userController } = require('../controllers/UsersController')
+const { handlePassCrypt } = require('../lib/handlePlassCrypt')
 
 const router = Router()
-
-// get profile
-router.get('/profile', (_, res) => {
-  res
-    .status(200)
-    .json({
-      status: 200,
-      message: 'finished',
-      username: 'juanestban',
-      password: 'asdafgoh',
-      rol: 'USER',
-    })
-    .end()
-})
 
 // get alls users
 router.get('/', userController.findAll)
@@ -24,10 +11,10 @@ router.get('/', userController.findAll)
 router.get('/:id', userController.findById)
 
 // create a new user
-router.post('/', userController.create)
+router.post('/', handlePassCrypt, userController.create)
 
 // update some user
-router.put('/:id', userController.update)
+router.put('/:id', handlePassCrypt, userController.update)
 
 // delete some user
 router.delete('/:id', userController.delete)

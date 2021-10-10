@@ -56,96 +56,115 @@ npm start
 ```bash
 .
 ├── coffin.gif
+├── dist
 ├── package.json
 ├── package-lock.json
 ├── public
-│   ├── favicon.ico
-│   └── index.html
+│   ├── favicon.ico
+│   └── index.html
 ├── README.md
 ├── run-server
 ├── server
-│   ├── config
-│   │   └── baseUrl.js
-│   ├── controllers
-│   │   ├── PrimaryController.js
-│   │   ├── SessionController.js
-│   │   ├── ShortenCodeController.js
-│   │   ├── ShortenUrlController.js
-│   │   └── UsersController.js
-│   ├── index.js
-│   ├── middlewares
-│   │   ├── handleAuth.js
-│   │   ├── handleErrors.js
-│   │   └── handleNotFound.js
-│   ├── models
-│   │   ├── ShortenUrl.js
-│   │   └── User.js
-│   ├── mongoose.js
-│   ├── rest
-│   │   └── users.rest
-│   └── routes
-│       ├── index.routes.js
-│       ├── shortenCode.routes.js
-│       ├── shortenUrl.routes.js
-│       └── users.routes.js
+│   ├── config
+│   │   └── baseUrl.js
+│   ├── controllers
+│   │   ├── PrimaryController.js
+│   │   ├── SessionController.js
+│   │   ├── ShortenCodeController.js
+│   │   ├── ShortenUrlController.js
+│   │   └── UsersController.js
+│   ├── index.js
+│   ├── lib
+│   │   └── handlePlassCrypt.js
+│   ├── middlewares
+│   │   ├── handleAuth.js
+│   │   ├── handleErrors.js
+│   │   └── handleNotFound.js
+│   ├── models
+│   │   ├── ShortenUrl.js
+│   │   └── User.js
+│   ├── mongoose.js
+│   ├── rest
+│   │   └── users.rest
+│   └── routes
+│       ├── index.routes.js
+│       ├── shortenCode.routes.js
+│       ├── shortenUrl.routes.js
+│       └── users.routes.js
 ├── src
-│   ├── App.js
-│   ├── components
-│   │   ├── Atoms
-│   │   │   └── index.js
-│   │   ├── Layouts
-│   │   │   └── Index.js
-│   │   ├── Molecules
-│   │   │   ├── index.js
-│   │   │   ├── LoginContent
-│   │   │   │   ├── index.js
-│   │   │   │   ├── LoginContent.js
-│   │   │   │   └── RenderLogin.js
-│   │   │   └── Navbar
-│   │   │       ├── index.js
-│   │   │       ├── Navbar.js
-│   │   │       └── styles.js
-│   │   └── Organims
-│   │       ├── index.js
-│   │       ├── ShortenUrl
-│   │       │   ├── index.js
-│   │       │   └── ShortenUrl.js
-│   │       └── ShortenUrlList
-│   │           ├── index.js
-│   │           └── ShortenUrlList.js
-│   ├── config
-│   │   ├── configAxiosToken.js
-│   │   ├── keyStorage.js
-│   │   ├── mockFun.js
-│   │   ├── roles.js
-│   │   ├── themes.js
-│   │   └── urlApi.js
-│   ├── contexts
-│   │   ├── AuthContext
-│   │   │   ├── AuthProvider.js
-│   │   │   └── index.js
-│   │   └── index.js
-│   ├── favicon.ico
-│   ├── hooks
-│   │   ├── index.js
-│   │   ├── useAuth.js
-│   │   ├── useQuerySession.js
-│   │   ├── useStorage.js
-│   │   └── useToken.js
-│   ├── index.css
-│   ├── index.js
-│   ├── pages
-│   │   ├── HomePage
-│   │   │   ├── HomePage.js
-│   │   │   └── index.js
-│   │   ├── index.js
-│   │   ├── LoginPage
-│   │   │   ├── index.js
-│   │   │   └── LoginPage.js
-│   │   └── RegisterPage
-│   │       ├── index.js
-│   │       └── RegisterPage.js
-│   └── serviceWorker.js
+│   ├── App.js
+│   ├── components
+│   │   ├── Atoms
+│   │   │   └── index.js
+│   │   ├── Layouts
+│   │   │   └── Index.js
+│   │   ├── Molecules
+│   │   │   ├── index.js
+│   │   │   ├── LoginContent
+│   │   │   │   ├── index.js
+│   │   │   │   ├── LoginContent.js
+│   │   │   │   └── RenderLogin.js
+│   │   │   ├── ModalPersonal
+│   │   │   │   ├── index.js
+│   │   │   │   └── ModalPersonal.js
+│   │   │   ├── ModalProfile
+│   │   │   │   ├── ButtonSave.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── ModalProfile.js
+│   │   │   │   ├── RenderProfile.js
+│   │   │   │   └── styles.js
+│   │   │   └── Navbar
+│   │   │       ├── index.js
+│   │   │       ├── Navbar.js
+│   │   │       └── styles.js
+│   │   └── Organims
+│   │       ├── index.js
+│   │       ├── ShortenUrl
+│   │       │   ├── index.js
+│   │       │   ├── ShortenUrl.js
+│   │       │   └── styles.js
+│   │       └── ShortenUrlList
+│   │           ├── index.js
+│   │           └── ShortenUrlList.js
+│   ├── config
+│   │   ├── configAxiosToken.js
+│   │   ├── initialStateProfile.js
+│   │   ├── keyStorage.js
+│   │   ├── mockFun.js
+│   │   ├── roles.js
+│   │   ├── themes.js
+│   │   └── urlApi.js
+│   ├── contexts
+│   │   ├── AuthContext
+│   │   │   ├── AuthProvider.js
+│   │   │   └── index.js
+│   │   ├── index.js
+│   │   └── ShortenUrlContext
+│   │       ├── index.js
+│   │       └── ShortenUrlProvider.js
+│   ├── favicon.ico
+│   ├── hooks
+│   │   ├── index.js
+│   │   ├── useAuth.js
+│   │   ├── useFormatDate.js
+│   │   ├── useQuerySession.js
+│   │   ├── useShortUrlContext.js
+│   │   ├── useStorage.js
+│   │   └── useToken.js
+│   ├── index.css
+│   ├── index.js
+│   ├── pages
+│   │   ├── HomePage
+│   │   │   ├── HomePage.js
+│   │   │   └── index.js
+│   │   ├── index.js
+│   │   ├── LoginPage
+│   │   │   ├── index.js
+│   │   │   └── LoginPage.js
+│   │   └── RegisterPage
+│   │       ├── index.js
+│   │       └── RegisterPage.js
+│   └── serviceWorker.js
 └── webpack.config.js
 ```
 
