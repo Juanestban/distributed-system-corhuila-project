@@ -66,7 +66,8 @@ npm start
 ├── run-server
 ├── server
 │   ├── config
-│   │   └── baseUrl.js
+│   │   ├── baseUrl.js
+│   │   └── months.js
 │   ├── controllers
 │   │   ├── PrimaryController.js
 │   │   ├── SessionController.js
@@ -75,22 +76,35 @@ npm start
 │   │   └── UsersController.js
 │   ├── index.js
 │   ├── lib
-│   │   └── handlePlassCrypt.js
+│   │   ├── handlePlassCrypt.js
+│   │   ├── server
+│   │   │   └── storage
+│   │   │       └── images
+│   │   │           └── Halloween-3
+│   │   └── storage.js
 │   ├── middlewares
 │   │   ├── handleAuth.js
 │   │   ├── handleErrors.js
 │   │   └── handleNotFound.js
 │   ├── models
+│   │   ├── ImgProfile.js
 │   │   ├── ShortenUrl.js
 │   │   └── User.js
 │   ├── mongoose.js
 │   ├── rest
 │   │   └── users.rest
-│   └── routes
-│       ├── index.routes.js
-│       ├── shortenCode.routes.js
-│       ├── shortenUrl.routes.js
-│       └── users.routes.js
+│   ├── routes
+│   │   ├── images.routes.js
+│   │   ├── index.routes.js
+│   │   ├── shortenCode.routes.js
+│   │   ├── shortenUrl.routes.js
+│   │   └── users.routes.js
+│   └── storage
+│       ├── images
+│       │   └── junedev
+│       │       ├── Halloween-2__13-Nov-2021__17:27:55.767Z.png
+│       │       └── IMG_20190609_074905_850__13-Nov-2021__17:18:41.312Z.jpeg
+│       └── index.js
 ├── src
 │   ├── App.js
 │   ├── components
@@ -165,7 +179,8 @@ npm start
 │   │       ├── index.js
 │   │       └── RegisterPage.js
 │   └── serviceWorker.js
-└── webpack.config.js
+├── webpack.config.js
+└── yarn.lock
 ```
 
 ### Integrantes
