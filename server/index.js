@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 const dotenv = require('dotenv')
+const path = require('path')
 const handleNotFound = require('./middlewares/handleNotFound')
 const handleErrors = require('./middlewares/handleErrors')
 
@@ -30,6 +31,12 @@ app.get('/', (_, res) => {
 
 // path: /short
 app.use('/short', require('./routes/shortenCode.routes'))
+
+// get all images profile [only Admin]
+app.use(
+  '/storage/images',
+  express.static(path.resolve(__dirname, 'storage/images'))
+)
 
 // path: /api
 app.use('/api', require('./routes/index.routes'))

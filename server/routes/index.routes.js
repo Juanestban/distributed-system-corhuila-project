@@ -1,8 +1,9 @@
 const { Router } = require('express')
 const router = Router()
 const { userRouter } = require('./users.routes')
-const handleAuth = require('../middlewares/handleAuth')
+const { routerImages } = require('./images.routes')
 const { shortenUrlRouter } = require('./shortenUrl.routes')
+const handleAuth = require('../middlewares/handleAuth')
 const { sessionController } = require('../controllers/SessionController')
 
 router.get('/', (_, res) => {
@@ -21,5 +22,6 @@ router.post('/login', sessionController.login)
 
 router.use('/users', userRouter)
 router.use('/shortenUrls', shortenUrlRouter)
+router.use('/images', routerImages)
 
 module.exports = router

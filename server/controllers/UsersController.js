@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
 const PrimaryController = require('./PrimaryController')
 const { User } = require('../models/User')
 

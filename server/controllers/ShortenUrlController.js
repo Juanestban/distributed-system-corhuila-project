@@ -1,6 +1,5 @@
 const validUrl = require('valid-url')
 const shortid = require('shortid')
-const jwt = require('jsonwebtoken')
 const PrimaryController = require('./PrimaryController')
 const { ShortenUrl } = require('../models/ShortenUrl')
 const { baseUrl } = require('../config/baseUrl')

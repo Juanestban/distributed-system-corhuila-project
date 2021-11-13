@@ -32,5 +32,6 @@ module.exports = {
     'import/first': types.OFF,
     'comma-dangle': types.OFF,
     'react/react-in-jsx-scope': types.OFF,
+    'node/no-callback-literal': types.OFF,
   },
 }
