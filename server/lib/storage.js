@@ -4,8 +4,8 @@ const path = require('path')
 const fs = require('fs')
 const { MONTH_TRANSFORM } = require('../config/months')
 
-const fileTypes = /jpeg|jpg|png|gif/
-const filenameType = /\.(jpeg|jpg|png|gif)/
+const fileTypes = /jpe?g|png|gif/
+const filenameType = /\.(jpe?g|png|gif|svg|webm|ico)/
 
 const handleExtensionsFiles = ({ req, file }) => {
   const regexDate = /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/g

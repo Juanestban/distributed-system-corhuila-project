@@ -1,4 +1,4 @@
-# MERN - Sistemas Distribuidos
+# MERN - ShortenUrl [Electiva 2]
 
 - usando mongo como gestor de base de datos
 - Front-end con React Js & WebPack & Babel
