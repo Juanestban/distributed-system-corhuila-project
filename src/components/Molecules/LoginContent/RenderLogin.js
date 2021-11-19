@@ -13,7 +13,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { mockFun } from '../../../config/mockFun'
 
 export const RenderLogin = ({
-  value: { username, password },
+  value: { username, password, fullname },
   loading = false,
   error = false,
   isRegister = false,
@@ -37,6 +37,19 @@ export const RenderLogin = ({
         />
         <FormHelperText>put your username unique 🐱</FormHelperText>
       </FormControl>
+      {isRegister && (
+        <FormControl isInvalid={error}>
+          <FormLabel>Fullname</FormLabel>
+          <Input
+            type="text"
+            name="fullname"
+            placeholder="fullname"
+            onChange={handleSession}
+            value={fullname}
+          />
+          <FormHelperText>put your fullname</FormHelperText>
+        </FormControl>
+      )}
       <FormControl isInvalid={error}>
         <FormLabel>Password</FormLabel>
         <InputGroup>

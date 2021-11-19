@@ -74,7 +74,7 @@ export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
     const { username, fullname, rol } = userStorage
 
     setProfile({ ...profile, username, fullname, rol })
-  }, [])
+  }, [userStorage])
 
   return (
     <ModalPersonal

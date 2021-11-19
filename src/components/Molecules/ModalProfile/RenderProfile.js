@@ -1,4 +1,4 @@
-import { Text, FormLabel } from '@chakra-ui/react'
+import { FormLabel } from '@chakra-ui/react'
 import { Input, FormControl } from './styles'
 import { initialState } from '../../../config/initialStateProfile'
 import { mockFun } from '../../../config/mockFun'
@@ -49,7 +49,7 @@ export const RenderProfile = ({
         rol:
       </FormLabel>
       <Input
-        value={profile.rol.toLowerCase()}
+        value={profile?.rol?.toLowerCase()}
         readOnly
         style={{ cursor: 'default' }}
       />

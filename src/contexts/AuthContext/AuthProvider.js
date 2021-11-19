@@ -45,10 +45,13 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     console.log(token)
-    ;(async () => {
-      const { user } = await getUserService(token, userStorage.id)
-      handleUser(user)
-    })()
+    if (token) {
+      ;(async () => {
+        const { user } = await getUserService(token)
+        console.log('authContext', user)
+        handleUser(user)
+      })()
+    }
   }, [token])
 
   return (
