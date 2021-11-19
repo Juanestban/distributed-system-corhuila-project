@@ -30,9 +30,10 @@ export const LoginContent = ({ isRegister = false }) => {
     e.preventDefault()
     const condHandlePost = isRegister ? handAxPostReg : handleAxiosPost
     const { data } = await condHandlePost(session)
+    const { token, ...anotherData } = data
 
     if (data) {
-      login(data.token)
+      login(token, anotherData)
       navigation.push('/home')
     }
   }

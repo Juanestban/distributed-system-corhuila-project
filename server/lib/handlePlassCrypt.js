@@ -7,6 +7,8 @@ const handlePassCrypt = async (req, res, next) => {
     const { body, method } = req
     const { username, password } = body
 
+    if (!password) return next()
+
     if (method === 'POST') {
       const userValidateUsername = await User.findOne({ username })
       const message = `this username already exist`

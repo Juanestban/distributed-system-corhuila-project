@@ -6,7 +6,10 @@ const UsersSchema = new Schema({
     unique: true,
     required: true,
   },
-  fullname: String,
+  fullname: {
+    type: String,
+    required: false,
+  },
   passwordHash: { type: String, required: true },
   rol: {
     type: String,

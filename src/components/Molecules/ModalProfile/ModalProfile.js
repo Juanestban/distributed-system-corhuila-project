@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useToast, Spinner } from '@chakra-ui/react'
 import { configAxiosToken } from '../../../config/configAxiosToken'
 import { baseUrl } from '../../../config/urlApi'
 import { initialState } from '../../../config/initialStateProfile'
 import { mockFun } from '../../../config/mockFun'
+import { AuthContext } from '../../../contexts/AuthContext'
 import { ModalPersonal } from '../ModalPersonal/ModalPersonal'
 import { useToken } from '../../../hooks'
 import { RenderProfile } from './RenderProfile'
@@ -13,38 +14,45 @@ import { ButtonSave } from './ButtonSave'
 export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
   const [profile, setProfile] = useState(initialState)
   const [loading, setLoading] = useState(false)
+  const { userStorage } = useContext(AuthContext)
   const { token } = useToken()
   const toast = useToast()
 
-  const getProfileInfo = async () => {
+  const handleChange = ({ target: { name, value } }) =>
+    setProfile({ ...profile, [name]: value })
+
+  const handleSaveInfoProfile = async () => {
     try {
       setLoading(true)
-      const { data } = await axios.get(
-        `${baseUrl}/users/profile`,
+      await axios.put(
+        `${baseUrl}/users/${userStorage.id}`,
+        profile,
         configAxiosToken(token)
       )
-      const { status, message, ...infoProfile } = data
       setLoading(false)
-      setProfile(infoProfile)
+      toast({
+        title: 'user data updated',
+        status: 'success',
+        isClosable: true,
+        duration: 4000,
+        position: 'bottom-right',
+      })
     } catch {
       setLoading(false)
       toast({
-        title: 'Error to get the info profile',
+        title: 'error to try update information',
         status: 'error',
         isClosable: true,
-        duration: 4000,
+        duration: 3000,
         position: 'bottom-right',
       })
     }
   }
 
-  const handleChange = ({ target: { name, value } }) =>
-    setProfile({ ...profile, [name]: value })
-
-  const handleSaveInfoProfile = () => console.log('saving...')
-
   useEffect(() => {
-    getProfileInfo()
+    const { username, fullname, rol } = userStorage
+    console.log(userStorage)
+    setProfile({ ...profile, username, fullname, rol })
   }, [])
 
   return (

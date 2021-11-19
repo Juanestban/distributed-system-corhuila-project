@@ -57,13 +57,24 @@ class UsersController extends PrimaryController {
         rol: updatedUser.rol,
       }
 
-      if (updatedUser)
+      console.log('LOGGGGG', userForSend)
+      if (updatedUser._id)
         return res
-          .status(201)
+          .status(200)
           .json({ ...userForSend })
           .end()
 
       return res.status(404).json({ message: "this id hasn't exist" }).end()
+    } catch (e) {
+      next(e)
+    }
+  }
+
+  getProfile = async (req, res, next) => {
+    try {
+      const { decodedToken } = req
+      const userProfile = await User.findById(decodedToken.id)
+      return res.status(200).json(userProfile).end()
     } catch (e) {
       next(e)
     }

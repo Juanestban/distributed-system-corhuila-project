@@ -16,7 +16,8 @@ export const RenderProfile = ({
         id="username"
         name="username"
         value={profile.username}
-        onChange={onChange}
+        readOnly
+        style={{ cursor: 'default' }}
       />
     </FormControl>
     <FormControl>
@@ -28,7 +29,7 @@ export const RenderProfile = ({
         name="fullname"
         value={profile.fullname}
         onChange={onChange}
-        placeholder={profile.fullname ?? 'put your fullname'}
+        placeholder="put your fullname"
       />
     </FormControl>
     <FormControl>
