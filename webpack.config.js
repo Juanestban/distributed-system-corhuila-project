@@ -9,6 +9,7 @@ module.exports = {
     filename: 'bundle.[hash:6].js',
     path: path.resolve(__dirname, 'dist'),
     sourceMapFilename: '[name].js.map',
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -35,7 +36,7 @@ module.exports = {
       reasons: false,
       children: false,
       // source: false,
-      publicPath: false,
+      publicPath: '/',
     },
     /* open: true // can open new browser with the localhost project */
   },
