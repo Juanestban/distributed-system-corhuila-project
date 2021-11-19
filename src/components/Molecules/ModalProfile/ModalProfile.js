@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
-import { useToast, Spinner } from '@chakra-ui/react'
+import { useToast, Spinner, Box } from '@chakra-ui/react'
 import { configAxiosToken } from '../../../config/configAxiosToken'
 import { baseUrl } from '../../../config/urlApi'
 import { initialState } from '../../../config/initialStateProfile'
@@ -13,6 +13,8 @@ import { ButtonSave } from './ButtonSave'
 
 export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
   const [profile, setProfile] = useState(initialState)
+  const [imgProfile, setImgProfile] = useState(null)
+  const inputImgRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const { userStorage } = useContext(AuthContext)
   const { token } = useToken()
@@ -20,6 +22,24 @@ export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
 
   const handleChange = ({ target: { name, value } }) =>
     setProfile({ ...profile, [name]: value })
+
+  const handleChangeImg = async () => {
+    if (inputImgRef.current) {
+      const { files } = inputImgRef.current
+      const file = files[0]
+      const dataForm = new FormData()
+      dataForm.append('image', file)
+
+      const { data } = await axios.post(
+        `${baseUrl}/images`,
+        dataForm,
+        configAxiosToken(token, file.type)
+      )
+      const { imgUrl } = data
+
+      if (file) setImgProfile(imgUrl)
+    }
+  }
 
   const handleSaveInfoProfile = async () => {
     try {
@@ -29,6 +49,7 @@ export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
         profile,
         configAxiosToken(token)
       )
+
       setLoading(false)
       toast({
         title: 'user data updated',
@@ -51,7 +72,7 @@ export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
 
   useEffect(() => {
     const { username, fullname, rol } = userStorage
-    console.log(userStorage)
+
     setProfile({ ...profile, username, fullname, rol })
   }, [])
 
@@ -63,9 +84,24 @@ export const ModalProfile = ({ isOpen = false, onClose = mockFun }) => {
       footer={<ButtonSave onClick={handleSaveInfoProfile} />}
     >
       {loading ? (
-        <Spinner size="lg" />
+        <Box
+          w="100%"
+          h="100%"
+          display="flex"
+          justifyContent="center"
+          alignContent="center"
+        >
+          <Spinner size="lg" />
+        </Box>
       ) : (
-        <RenderProfile profile={profile} onChange={handleChange} />
+        <RenderProfile
+          profile={profile}
+          inputImgRef={inputImgRef}
+          imgProfile={imgProfile}
+          handleChangeImg={handleChangeImg}
+          onChange={handleChange}
+          onSubmit={handleSaveInfoProfile}
+        />
       )}
     </ModalPersonal>
   )

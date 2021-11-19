@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const PrimaryController = require('./PrimaryController')
 const { User } = require('../models/User')
+const { ImgProfile } = require('../models/ImgProfile')
 
 class UsersController extends PrimaryController {
   constructor() {
@@ -57,7 +58,6 @@ class UsersController extends PrimaryController {
         rol: updatedUser.rol,
       }
 
-      console.log('LOGGGGG', userForSend)
       if (updatedUser._id)
         return res
           .status(200)
@@ -73,8 +73,24 @@ class UsersController extends PrimaryController {
   getProfile = async (req, res, next) => {
     try {
       const { decodedToken } = req
-      const userProfile = await User.findById(decodedToken.id)
-      return res.status(200).json(userProfile).end()
+      const { id: userId } = decodedToken
+      const userProfile = await User.findById(userId)
+
+      if (userProfile) {
+        const queryImg = await ImgProfile.find({ userId })
+        const user = {
+          id: userProfile._id,
+          username: userProfile.username,
+          fullname: userProfile.fullname,
+          rol: userProfile.rol,
+        }
+        return res
+          .status(200)
+          .json({ ...user, imgsProfile: queryImg })
+          .end()
+      }
+
+      return res.status(404).json({ message: "this id hasn't exist" }).end()
     } catch (e) {
       next(e)
     }

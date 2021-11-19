@@ -18,6 +18,6 @@ export const Input = styled.input`
   margin-left: 10px;
 
   &:hover {
-    background-color: rgba(45, 55, 120);
+    background-color: #181d26;
   }
 `

@@ -2,9 +2,9 @@ import axios from 'axios'
 import { baseUrl } from '../config/urlApi'
 import { configAxiosToken } from '../config/configAxiosToken'
 
-export const getUserService = async (token, id) => {
+export const getUserService = async (token) => {
   const { data } = await axios.get(
-    `${baseUrl}/users/${id}`,
+    `${baseUrl}/users/profile`,
     configAxiosToken(token)
   )
 

@@ -10,7 +10,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 
     if (file) {
       const { id, username } = req.decodedToken
-      const imgProfile = ImgProfile({ idUser: id })
+      const imgProfile = ImgProfile({ userId: id })
       imgProfile.setImgUrl(ruteImage)
       const result = await imgProfile.save()
       return res
