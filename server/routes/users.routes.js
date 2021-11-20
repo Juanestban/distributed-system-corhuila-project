@@ -7,6 +7,9 @@ const router = Router()
 // get alls users
 router.get('/', userController.findAll)
 
+// profile
+router.get('/profile', userController.getProfile)
+
 // get one user by id
 router.get('/:id', userController.findById)
 

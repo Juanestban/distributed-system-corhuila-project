@@ -12,7 +12,13 @@ import { ShortenUrl } from '..'
 import { useShortUrlContext } from '../../../hooks'
 
 export const ShortenUrlList = () => {
-  const { urls, loading, error, handleDelete } = useShortUrlContext()
+  const {
+    urls,
+    loading,
+    error,
+    handleDelete,
+    handleUpdate,
+  } = useShortUrlContext()
 
   return (
     <Box p="4">
@@ -29,7 +35,12 @@ export const ShortenUrlList = () => {
           {urls.length > 0 &&
             !error &&
             urls.map((url) => (
-              <ShortenUrl key={url.id} {...url} onDelete={handleDelete} />
+              <ShortenUrl
+                key={url.id}
+                {...url}
+                onDelete={handleDelete}
+                onUpdate={handleUpdate}
+              />
             ))}
         </Tbody>
       </Table>

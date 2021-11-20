@@ -1,14 +1,16 @@
 import { Tr, Link, IconButton } from '@chakra-ui/react'
-import { FiTrash, FiCheck, FiEdit } from 'react-icons/fi'
+import { FiTrash, FiEdit } from 'react-icons/fi'
 import { mockFun } from '../../../config/mockFun'
 import { useFormatDate } from '../../../hooks'
 import { Td } from './styles'
 
 export const ShortenUrl = ({
+  id,
   longUrl,
   date = '',
   shortUrl,
   onDelete = mockFun,
+  onUpdate = mockFun,
 }) => {
   const { fomatedDate } = useFormatDate(date)
 
@@ -27,11 +29,18 @@ export const ShortenUrl = ({
       <Td>{fomatedDate}</Td>
       <Td style={{ textAlign: 'center' }}>
         <IconButton
+          icon={<FiEdit />}
+          size="md"
+          color="green.400"
+          variant="ghost"
+          onClick={() => onUpdate(id)}
+        />
+        <IconButton
           icon={<FiTrash />}
           size="md"
           color="red.500"
           variant="ghost"
-          onClick={onDelete}
+          onClick={() => onDelete(id)}
         />
       </Td>
     </Tr>

@@ -3,14 +3,16 @@ import { useHistory } from 'react-router-dom'
 import { useAuth, useQuerySession } from '../../../hooks'
 import { RenderLogin } from './RenderLogin'
 
-const initialVal = { username: '', password: '' }
+const initialVal = { username: '', password: '', fullname: '' }
 
 export const LoginContent = ({ isRegister = false }) => {
   const [session, setSession] = useState(initialVal)
   const [hiddePasword, setHiddePassword] = useState(true)
-  const [isReg, setIsReg] = useState(isRegister)
   const navigation = useHistory()
-  const { loading, error, handleAxiosPost } = useQuerySession('login')
+  const { loading, error, handleAxiosPost } = useQuerySession(
+    !isRegister ? 'login' : 'register',
+    !isRegister
+  )
   const {
     loading: loadReg,
     error: errReg,
@@ -29,10 +31,14 @@ export const LoginContent = ({ isRegister = false }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const condHandlePost = isRegister ? handAxPostReg : handleAxiosPost
-    const { data } = await condHandlePost(session)
+    const { fullname, ...loginData } = session
+    const { data } = await condHandlePost(
+      isRegister ? { fullname, ...loginData } : loginData
+    )
+    const { token, ...anotherData } = data
 
     if (data) {
-      login(data.token)
+      login(token, anotherData)
       navigation.push('/home')
     }
   }
@@ -42,7 +48,7 @@ export const LoginContent = ({ isRegister = false }) => {
       value={session}
       loading={isRegister ? loadReg : loading}
       error={isRegister ? errReg : error}
-      isRegister={isReg}
+      isRegister={isRegister}
       handleIsRegister={handleIsRegister}
       handleSession={handleSession}
       handleSubmit={handleSubmit}

@@ -3,7 +3,7 @@ const { baseUrl } = require('../config/baseUrl')
 
 const ImgProfileSchema = Schema(
   {
-    idUser: Schema.Types.ObjectId,
+    userId: Schema.Types.ObjectId,
     imgUrl: String,
     date: {
       type: String,
@@ -20,7 +20,6 @@ ImgProfileSchema.methods.setImgUrl = function setImgUrl(rute) {
 ImgProfileSchema.set('toJSON', {
   transform: (_, returnedObject) => {
     returnedObject.id = returnedObject._id
-    delete returnedObject._idUser
     delete returnedObject.__v
   },
 })

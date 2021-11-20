@@ -1,4 +1,4 @@
-# MERN - Sistemas Distribuidos
+# MERN - ShortenUrl [Electiva 2]
 
 - usando mongo como gestor de base de datos
 - Front-end con React Js & WebPack & Babel
@@ -77,10 +77,6 @@ npm start
 │   ├── index.js
 │   ├── lib
 │   │   ├── handlePlassCrypt.js
-│   │   ├── server
-│   │   │   └── storage
-│   │   │       └── images
-│   │   │           └── Halloween-3
 │   │   └── storage.js
 │   ├── middlewares
 │   │   ├── handleAuth.js
@@ -102,11 +98,14 @@ npm start
 │   └── storage
 │       ├── images
 │       │   └── junedev
-│       │       ├── Halloween-2__13-Nov-2021__17:27:55.767Z.png
-│       │       └── IMG_20190609_074905_850__13-Nov-2021__17:18:41.312Z.jpeg
+│       │       ├── Halloween-1__19-Nov-2021__20:12:48.132Z.png
+│       │       ├── Halloween-3__19-Nov-2021__20:23:44.722Z.png
+│       │       ├── IMG_20190609_074905_850__19-Nov-2021__20:20:22.736Z.jpeg
+│       │       └── IMG_20190609_074905_850__19-Nov-2021__20:24:07.364Z.jpeg
 │       └── index.js
 ├── src
 │   ├── App.js
+│   ├── assets
 │   ├── components
 │   │   ├── Atoms
 │   │   │   └── index.js
@@ -127,9 +126,13 @@ npm start
 │   │   │   │   ├── ModalProfile.js
 │   │   │   │   ├── RenderProfile.js
 │   │   │   │   └── styles.js
-│   │   │   └── Navbar
+│   │   │   ├── Navbar
+│   │   │   │   ├── index.js
+│   │   │   │   ├── Navbar.js
+│   │   │   │   └── styles.js
+│   │   │   └── PreviewImgProfile
 │   │   │       ├── index.js
-│   │   │       ├── Navbar.js
+│   │   │       ├── PreviewImgProfile.js
 │   │   │       └── styles.js
 │   │   └── Organims
 │   │       ├── index.js
@@ -168,6 +171,9 @@ npm start
 │   ├── index.css
 │   ├── index.js
 │   ├── pages
+│   │   ├── EditPage
+│   │   │   ├── EditPage.js
+│   │   │   └── index.js
 │   │   ├── HomePage
 │   │   │   ├── HomePage.js
 │   │   │   └── index.js
@@ -178,6 +184,8 @@ npm start
 │   │   └── RegisterPage
 │   │       ├── index.js
 │   │       └── RegisterPage.js
+│   ├── services
+│   │   └── getUser.js
 │   └── serviceWorker.js
 ├── webpack.config.js
 └── yarn.lock

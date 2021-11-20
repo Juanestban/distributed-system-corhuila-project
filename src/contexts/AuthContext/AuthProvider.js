@@ -2,15 +2,17 @@ import { createContext, useEffect, useMemo } from 'react'
 import { mockFun } from '../../config/mockFun'
 import { useStorage } from '../../hooks'
 import { keyStorage } from '../../config/keyStorage'
+import { getUserService } from '../../services/getUser'
 
 export const AuthContext = createContext({
+  userStorage: null,
   token: null,
   login: mockFun,
   register: mockFun,
   logout: mockFun,
 })
 
-const { authToken } = keyStorage
+const { authToken, userKeySorage } = keyStorage
 
 export default function AuthProvider({ children }) {
   const [token, handleToken, handleRemoveToken] = useStorage(
@@ -18,24 +20,42 @@ export default function AuthProvider({ children }) {
     authToken,
     true
   )
+  const [userStorage, handleUser, handleRemoveUser] = useStorage(
+    {},
+    userKeySorage
+  )
 
   const auth = useMemo(
     () => ({
-      login: (token) => handleToken(token),
-      register: (token) => {
-        console.log('register', token)
+      login: (token, userData) => {
+        handleToken(token)
+        handleUser(userData)
       },
-      logout: () => handleRemoveToken(),
+      register: (token, userData) => {
+        handleToken(token)
+        handleUser(userData)
+      },
+      logout: () => {
+        handleRemoveToken()
+        handleRemoveUser()
+      },
     }),
     []
   )
 
   useEffect(() => {
     console.log(token)
+    if (token) {
+      ;(async () => {
+        const { user } = await getUserService(token)
+        console.log('authContext', user)
+        handleUser(user)
+      })()
+    }
   }, [token])
 
   return (
-    <AuthContext.Provider value={{ token, ...auth }}>
+    <AuthContext.Provider value={{ userStorage, token, ...auth }}>
       {children}
     </AuthContext.Provider>
   )

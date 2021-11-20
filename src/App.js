@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom'
 import { useToken } from './hooks'
-import { HomePage, LoginPage, RegisterPage } from './pages'
+import { HomePage, LoginPage, RegisterPage, EditPage } from './pages'
 import { Navbar } from './components/Molecules'
 import { ShortenUrlProvider } from './contexts'
 
@@ -25,6 +25,7 @@ export default function App() {
               </Route>
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/register" component={RegisterPage} />
+              <Route path="/edit/:idUrl" component={EditPage} />
               <Route exact path="/home">
                 <ShortenUrlProvider>
                   <HomePage />

@@ -17,7 +17,11 @@ class SessionController {
       if (!(user && passwordCorrect))
         return res.status(401).json({ error: 'invalid user or password' }).end()
 
-      const userForToken = { id: user._id, username: user.username }
+      const userForToken = {
+        id: user._id,
+        username: user.username,
+        rol: user.rol,
+      }
       const token = jwt.sign(userForToken, JWT_PASSWORD)
 
       return res

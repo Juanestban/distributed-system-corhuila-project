@@ -3,7 +3,6 @@ import { useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import { useToken } from '.'
 import { baseUrl } from '../config/urlApi'
-import { configAxiosToken } from '../config/configAxiosToken'
 
 export const useQuerySession = (url = '', isLogin = true) => {
   const [loading, setLoading] = useState(false)
